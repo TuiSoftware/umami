@@ -20,13 +20,13 @@ jobs:
         --tag ghcr.io/$GITHUB_ACTOR/tuisoftware-umami:postgresql-latest \
         .
 
-    - name: Docker login
-      env:
-        CR_PAT: ${{ secrets.CR_PAT }} # problem here, org repo does not suppoer PAT, personal access token
-      run: docker login -u $GITHUB_ACTOR -p $CR_PAT ghcr.io
-
-    - name: Push image to GitHub
-      run: |
-        # Push each image individually, avoiding pushing to :latest
-        docker push ghcr.io/$GITHUB_ACTOR/tuisoftware-umami:postgresql-$(echo $GITHUB_SHA | head -c7)
-        docker push ghcr.io/$GITHUB_ACTOR/tuisoftware-umami:postgresql-latest
+#    - name: Docker login
+#      env:
+#        CR_PAT: ${{ secrets.CR_PAT }} # problem here, org repo does not suppoer PAT, personal access token
+#      run: docker login -u $GITHUB_ACTOR -p $CR_PAT ghcr.io
+#
+#    - name: Push image to GitHub
+#      run: |
+#        # Push each image individually, avoiding pushing to :latest
+#        docker push ghcr.io/$GITHUB_ACTOR/tuisoftware-umami:postgresql-$(echo $GITHUB_SHA | head -c7)
+#        docker push ghcr.io/$GITHUB_ACTOR/tuisoftware-umami:postgresql-latest
